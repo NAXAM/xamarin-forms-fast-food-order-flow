@@ -34,7 +34,7 @@
             HeightRequest="96"
             Source="{Binding Brand.HighlightUrl}"
             Aspect="AspectFit" />
-
+            
         <pc:PancakeView
             x:Name="container"
             Padding="0"
@@ -183,7 +183,8 @@
                                             </Grid.RowDefinitions>
 
                                             <Label
-                                                Text="+"
+                                                FontFamily="Material"
+                                                Text="{Static res:IconFont.Plus}"
                                                 VerticalOptions="Center"
                                                 HorizontalOptions="Center" />
 
@@ -216,6 +217,7 @@
                     Command="{Binding GoBackCommand}" />
             </Label.GestureRecognizers>
         </Label>
+        
         <Grid
             IsVisible="{Binding HasCartItems}"
             Margin="16"
@@ -244,6 +246,7 @@
                 </pc:PancakeView.GestureRecognizers>
             </pc:PancakeView>
         </Grid>
+
         <Grid
             IsVisible="false"
             Grid.Row="0"

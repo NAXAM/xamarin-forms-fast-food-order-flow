@@ -92,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ffof\ffof.csproj">
-      <Project>{EFE55FCE-98C8-49C9-BC76-E81BE6737B68}</Project>
+      <Project>{31BD4EC8-A2CD-4AE5-96B9-BF81586B61FF}</Project>
       <Name>ffof</Name>
     </ProjectReference>
   </ItemGroup>
