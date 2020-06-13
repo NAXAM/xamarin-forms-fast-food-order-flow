@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d"
+    x:Class="ffof.Controls.BrandView">
+    <StackLayout
+        Spacing="0">
+        <Label
+            Text="{Binding Name}"
+            d:Text="McDonald's"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Padding="16,32,16,4" />
+
+        <Grid
+            ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="24" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Column="0"
+                Text="{Binding Rating, StringFormat='{0:#.#} stars'}"
+                d:Text="5 star"
+                TextColor="#A1A1A1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Start" />
+            <Label
+                Text="{Binding PricingCategory}"
+                d:Text="$$$"
+                TextColor="#A1A1A1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="End" />
+            <Label
+                TextColor="#A1A1A1"
+                Text="{Binding Remark}"
+                d:Text="Burgers, American"
+                LineBreakMode="TailTruncation"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center" />
+        </Grid>
+        <Label
+            Padding="16,8"
+            d:Text="10-15 min"
+            HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span
+                        Text="{Binding ShortestWaitingTime}" />
+                    <Span
+                        Text="-" />
+                    <Span
+                        Text="{Binding LongestWaitingTime}" />
+                    <Span
+                        Text=" min" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
+</ContentView>

@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:controls="clr-namespace:ffof.Controls"
+    xmlns:res="clr-namespace:ffof.Resources"
+    BackgroundColor="{Binding CurrentItem.ColorCode, Source={Reference lstLogos}}"
+    mc:Ignorable="d"
+    x:Name="root"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="ffof.MainPage">
+    <Grid>
+        <StackLayout
+            VerticalOptions="Fill">
+            <StackLayout.Padding>
+                <OnPlatform
+                    x:TypeArguments="Thickness">
+                    <On
+                        Platform="iOS"
+                        Value="0,64,0,0" />
+                    <On
+                        Platform="Android"
+                        Value="0,24,0,0" />
+                </OnPlatform>
+            </StackLayout.Padding>
+            <pc:PancakeView
+                HorizontalOptions="CenterAndExpand"
+                BorderColor="White"
+                BorderThickness="1"
+                CornerRadius="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Padding="24,8"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    Text="ASAP " />
+                                <Span
+                                    FontFamily="Material"
+                                    Text="{Static res:IconFont.ArrowRight}" />
+                                <Span
+                                    Text=" WORK" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </pc:PancakeView>
+
+            <CarouselView
+                x:Name="lstLogos"
+                ItemsSource="{Binding Brands}"
+                Margin="0,48"
+                HeightRequest="96">
+                <d:CarouselView.ItemsSource>
+                    <Array
+                        Type="{Type x:String}">
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                    </Array>
+                </d:CarouselView.ItemsSource>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Image
+                            Source="{Binding LogoUrl}"
+                            d:Source="https://gigamall.com.vn/data/2019/09/20/11491513_LOGO-McDonald_s.jpg"
+                            Aspect="AspectFit" />
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <CarouselView
+                x:Name="lstBrands"
+                ItemsSource="{Binding Brands}"
+                Position="{Binding Position, Source={Reference lstLogos}}"
+                PeekAreaInsets="32,0">
+                <d:CarouselView.ItemsSource>
+                    <Array
+                        Type="{Type x:String}">
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                        <x:String>1</x:String>
+                    </Array>
+                </d:CarouselView.ItemsSource>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Padding="12,0">
+                            <pc:PancakeView
+                                Padding="16,20"
+                                CornerRadius="20,20,0,0"
+                                BackgroundColor="White">
+                                <StackLayout
+                                    Spacing="0">
+                                    <pc:PancakeView
+                                        HorizontalOptions="Fill"
+                                        WidthRequest="320"
+                                        HeightRequest="320"
+                                        BackgroundColor="White"
+                                        IsClippedToBounds="True"
+                                        CornerRadius="20">
+                                        <Image
+                                            Aspect="Fill"
+                                            Source="{Binding HighlightUrl}"
+                                            d:Source="https://gigamall.com.vn/data/2019/09/20/11493168_Trung-t%C3%A2m-th%C6%B0%C6%A1ng-m%E1%BA%A1i-GIGAMALL-McDonalds-1.jpg" />
+                                    </pc:PancakeView>
+
+                                    <controls:BrandView
+                                        BindingContext="{Binding .}" />
+
+                                    <Button
+                                        Margin="24"
+                                        TextColor="White"
+                                        HeightRequest="40"
+                                        WidthRequest="200"
+                                        BackgroundColor="Black"
+                                        CornerRadius="20"
+                                        HorizontalOptions="Center"
+                                        Command="{Binding BindingContext.ViewProductsCommand, Source={Reference root}}"
+                                        CommandParameter="{Binding .}"
+                                        Text="ORDER FROM HERE" />
+                                </StackLayout>
+                            </pc:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+    </Grid>
+</ContentPage>

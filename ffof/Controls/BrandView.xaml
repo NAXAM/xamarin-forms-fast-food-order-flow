@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:ffof.Resources"
+    mc:Ignorable="d"
+    x:Class="ffof.Controls.BrandView">
+    <StackLayout
+        Spacing="4">
+        <Label
+            Text="{Binding Name}"
+            d:Text="McDonald's"
+            FontAttributes="Bold"
+            FontSize="Large"
+            MaxLines="1"
+            LineBreakMode="MiddleTruncation"
+            HorizontalTextAlignment="Center"
+            Padding="16,40,16,4" />
+
+        <Grid
+            ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="24" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="48" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="48" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                d:Text="5 star"
+                TextColor="#A1A1A1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontFamily="Material"
+                            Text="{Static res:IconFont.Star}"
+                            TextColor="DarkOrange"
+                            />
+                        <Span
+                            Text="{Binding Rating, StringFormat='{0:#0.#}'}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label
+                Grid.Column="2"
+                Text="{Binding PricingCategory}"
+                d:Text="$$$"
+                TextColor="#A1A1A1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="End" />
+            <Label
+                Grid.Column="1"
+                TextColor="#A1A1A1"
+                Text="{Binding Remark}"
+                d:Text="Burgers, American"
+                LineBreakMode="MiddleTruncation"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center" />
+        </Grid>
+        <Label
+            Padding="16,8"
+            d:Text="10-15 min"
+            HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span
+                        Text="{Binding ShortestWaitingTime}" />
+                    <Span
+                        Text="-" />
+                    <Span
+                        Text="{Binding LongestWaitingTime}" />
+                    <Span
+                        Text=" min" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
+</ContentView>

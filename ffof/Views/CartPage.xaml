@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:res="clr-namespace:ffof.Resources"
+    x:Class="ffof.Views.CartPage"
+    NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.Padding>
+            <OnPlatform
+                x:TypeArguments="Thickness">
+                <On
+                    Platform="iOS"
+                    Value="0,32,0,0" />
+                <On
+                    Platform="Android"
+                    Value="0,24,0,0" />
+            </OnPlatform>
+        </Grid.Padding>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="48" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label
+            Text="Cart"
+            FontSize="Medium"
+            HorizontalTextAlignment="Center"
+            VerticalOptions="Center" />
+        
+        <Label
+            Padding="16,0"
+            FontFamily="Material"
+            FontSize="24"
+            VerticalOptions="Center"
+            Text="{Static res:IconFont.ArrowLeft}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding GoBackCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <CollectionView
+            ItemsSource="{Binding Products}"
+            Grid.Row="1"
+            Header="Your order"
+            Footer="Relevant items">
+            <CollectionView.HeaderTemplate>
+                <DataTemplate>
+                    <Label
+                        Text="Your order"
+                        FontSize="Medium"
+                        Padding="16" />
+                </DataTemplate>
+            </CollectionView.HeaderTemplate>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="0" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="72" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="144" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="72" />
+                        </Grid.RowDefinitions>
+
+                        <Image
+                            Margin="16"
+                            Source="{Binding PictureUrl}"
+                            Aspect="AspectFill" />
+
+                        <StackLayout
+                            Spacing="0"
+                            VerticalOptions="Center"
+                            Grid.Column="1">
+                            <Label
+                                FontSize="Medium"
+                                Text="{Binding Name}" />
+                            <Label
+                                FontSize="Medium"
+                                FontAttributes="Bold"
+                                Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
+                        </StackLayout>
+
+                        <pc:PancakeView
+                            VerticalOptions="Center"
+                            Grid.Column="2"
+                            BorderColor="DarkGray"
+                            BorderThickness="1"
+                            CornerRadius="24"
+                            Margin="0,8,16,8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="48" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    VerticalTextAlignment="Center"
+                                    FontFamily="Material"
+                                    Text="{Static res:IconFont.Minus}"
+                                    FontSize="20"
+                                    HorizontalTextAlignment="Center"
+                                    FontAttributes="Bold" />
+                                <Label
+                                    VerticalOptions="Center"
+                                    Grid.Column="1"
+                                    Text="100"
+                                    HorizontalTextAlignment="Center"
+                                    FontAttributes="Bold" />
+                                <Label
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="2"
+                                    FontFamily="Material"
+                                    Text="{Static res:IconFont.Plus}"
+                                    FontSize="20"
+                                    HorizontalTextAlignment="Center"
+                                    FontAttributes="Bold" />
+                            </Grid>
+                        </pc:PancakeView>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.FooterTemplate>
+                <DataTemplate>
+                    <StackLayout
+                        Spacing="0">
+                        <Label
+                            Padding="16"
+                            Text="Your might like" />
+                        <CarouselView
+                            HeightRequest="112"
+                            ItemsSource="{Binding RelevantProducts}"
+                            PeekAreaInsets="16">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid
+                                        Padding="8">
+                                        <pc:PancakeView
+                                            Padding="8"
+                                            HasShadow="False"
+                                            BorderColor="DarkGray"
+                                            BorderThickness="1"
+                                            CornerRadius="12"
+                                            BackgroundColor="White">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition
+                                                        Width="72" />
+                                                    <ColumnDefinition
+                                                        Width="*" />
+                                                    <ColumnDefinition
+                                                        Width="48" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition
+                                                        Height="72" />
+                                                </Grid.RowDefinitions>
+
+                                                <Image
+                                                    Margin="16"
+                                                    Source="{Binding PictureUrl}"
+                                                    Aspect="AspectFill" />
+
+                                                <StackLayout
+                                                    VerticalOptions="Center"
+                                                    Grid.Column="1">
+                                                    <Label
+                                                        FontSize="Medium"
+                                                        Text="{Binding Name}" />
+                                                    <Label
+                                                        FontSize="Medium"
+                                                        FontAttributes="Bold"
+                                                        Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
+                                                </StackLayout>
+                                                <pc:PancakeView
+                                                    Margin="8"
+                                                    VerticalOptions="End"
+                                                    Grid.Column="2"
+                                                    BorderColor="DarkGray"
+                                                    BorderThickness="1"
+                                                    CornerRadius="16">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition
+                                                                Width="32" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition
+                                                                Height="32" />
+                                                        </Grid.RowDefinitions>
+                                                        <Label
+                                                            VerticalTextAlignment="Center"
+                                                            FontFamily="Material"
+                                                            Text="{Static res:IconFont.Plus}"
+                                                            FontSize="24"
+                                                            HorizontalTextAlignment="Center"
+                                                            FontAttributes="Bold" />
+                                                    </Grid>
+                                                </pc:PancakeView>
+                                            </Grid>
+                                        </pc:PancakeView>
+                                    </Grid>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+
+                        <Label
+                            Text="Total"
+                            FontSize="Large"
+                            Padding="16,24,16,16" />
+                        <StackLayout
+                            Padding="16,0"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="Subtotal"
+                                TextColor="DarkGray"
+                                FontSize="Medium" />
+                            <Label
+                                HorizontalOptions="EndAndExpand"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                Text="VND 1000k" />
+                        </StackLayout>
+                        <StackLayout
+                            Padding="16,8"
+                            Orientation="Horizontal">
+                            <Label
+                                TextColor="LimeGreen"
+                                Text="Delilery fee"
+                                FontSize="Medium" />
+                            <Label
+                                TextColor="LimeGreen"
+                                HorizontalOptions="EndAndExpand"
+                                Text="Free" />
+                        </StackLayout>
+                        <StackLayout
+                            Padding="16,8"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="Total"
+                                FontSize="Medium" />
+                            <Label
+                                HorizontalOptions="EndAndExpand"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                Text="VND 1000k" />
+                        </StackLayout>
+
+
+                        <Label
+                            Text="Pay with"
+                            FontSize="Large"
+                            Padding="16,24,16,0" />
+
+                        <StackLayout
+                            Spacing="0"
+                            Orientation="Horizontal">
+                            <Image
+                                Margin="16,8"
+                                Source="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Font_Awesome_5_brands_cc-apple-pay.svg/512px-Font_Awesome_5_brands_cc-apple-pay.svg.png"
+                                Aspect="AspectFit"
+                                HeightRequest="48" />
+
+                            <Label
+                                VerticalTextAlignment="Center"
+                                Text="Apple Pay" />
+                        </StackLayout>
+                        <pc:PancakeView
+                            HeightRequest="48"
+                            BackgroundColor="Black"
+                            CornerRadius="24"
+                            Margin="24">
+                            <Label
+                                Padding="16,0"
+                                VerticalOptions="Center"
+                                Text="Pay VND 1000k"
+                                TextColor="White"
+                                HorizontalTextAlignment="Center"
+                                FontAttributes="Bold" />
+                        </pc:PancakeView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.FooterTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
