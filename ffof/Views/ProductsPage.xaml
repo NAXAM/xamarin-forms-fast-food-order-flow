@@ -114,8 +114,8 @@
                             <Grid Padding="0,8" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="96" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="24" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="25" />
                                 </Grid.RowDefinitions>
                                 <Image
                                     Aspect="AspectFit"
@@ -344,7 +344,7 @@
                         </Grid.RowDefinitions>
 
                         <pc:PancakeView
-                            Margin="24,8"
+                            Margin="8"
                             BorderColor="DarkCyan"
                             BorderThickness="1"
                             CornerRadius="24">
@@ -381,7 +381,7 @@
 
                         <pc:PancakeView
                             Grid.Column="1"
-                            Margin="24,8"
+                            Margin="8"
                             BackgroundColor="Black"
                             CornerRadius="24">
                             <Label
