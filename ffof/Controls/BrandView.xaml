@@ -12,7 +12,7 @@
             Margin="0,15,0,0"
             d:Text="McDonald's"
             FontAttributes="Bold"
-            FontSize="Large"
+            FontSize="{StaticResource FontSizeXL}"
             HorizontalTextAlignment="Center"
             LineBreakMode="MiddleTruncation"
             MaxLines="1"

@@ -3,6 +3,7 @@
     x:Class="ffof.Views.CartPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:res="clr-namespace:ffof.Resources"
     NavigationPage.HasNavigationBar="False">
@@ -19,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <Label
-            FontSize="Medium"
+            FontSize="{StaticResource FontSizeL}"
             HorizontalTextAlignment="Center"
             Text="Cart"
             VerticalOptions="Center" />
@@ -27,7 +28,7 @@
         <Label
             Padding="16,0"
             FontFamily="Material"
-            FontSize="24"
+            FontSize="{StaticResource FontSizeIcon}"
             Text="{Static res:IconFont.ArrowLeft}"
             VerticalOptions="Center">
             <Label.GestureRecognizers>
@@ -44,7 +45,7 @@
                 <DataTemplate>
                     <Label
                         Padding="16"
-                        FontSize="Medium"
+                        FontSize="{StaticResource FontSizeL}"
                         Text="Your order" />
                 </DataTemplate>
             </CollectionView.HeaderTemplate>
@@ -63,7 +64,7 @@
                             <RowDefinition Height="72" />
                         </Grid.RowDefinitions>
 
-                        <Image
+                        <ffimageloading:CachedImage
                             Margin="16"
                             Aspect="AspectFill"
                             Source="{Binding PictureUrl}" />
@@ -73,13 +74,13 @@
                             Spacing="0"
                             VerticalOptions="Center">
                             <Label
-                                FontSize="Small"
+                                FontSize="{StaticResource FontSizeM}"
                                 LineBreakMode="TailTruncation"
                                 MaxLines="2"
                                 Text="{Binding Name}" />
                             <Label
                                 FontAttributes="Bold"
-                                FontSize="Small"
+                                FontSize="{StaticResource FontSizeM}"
                                 Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
                         </StackLayout>
 
@@ -102,7 +103,7 @@
                                 <Label
                                     FontAttributes="Bold"
                                     FontFamily="Material"
-                                    FontSize="20"
+                                    FontSize="{StaticResource FontSizeXL}"
                                     HorizontalTextAlignment="Center"
                                     Text="{Static res:IconFont.Minus}"
                                     VerticalTextAlignment="Center" />
@@ -116,7 +117,7 @@
                                     Grid.Column="2"
                                     FontAttributes="Bold"
                                     FontFamily="Material"
-                                    FontSize="20"
+                                    FontSize="{StaticResource FontSizeXL}"
                                     HorizontalTextAlignment="Center"
                                     Text="{Static res:IconFont.Plus}"
                                     VerticalTextAlignment="Center" />
@@ -153,16 +154,16 @@
                                                     <RowDefinition Height="72" />
                                                 </Grid.RowDefinitions>
 
-                                                <Image
+                                                <ffimageloading:CachedImage
                                                     Margin="16"
                                                     Aspect="AspectFill"
                                                     Source="{Binding PictureUrl}" />
 
                                                 <StackLayout Grid.Column="1" VerticalOptions="Center">
-                                                    <Label FontSize="Medium" Text="{Binding Name}" />
+                                                    <Label FontSize="{StaticResource FontSizeL}" Text="{Binding Name}" />
                                                     <Label
                                                         FontAttributes="Bold"
-                                                        FontSize="Medium"
+                                                        FontSize="{StaticResource FontSizeL}"
                                                         Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
                                                 </StackLayout>
                                                 <pc:PancakeView
@@ -182,7 +183,7 @@
                                                         <Label
                                                             FontAttributes="Bold"
                                                             FontFamily="Material"
-                                                            FontSize="24"
+                                                            FontSize="{StaticResource FontSizeIcon}"
                                                             HorizontalTextAlignment="Center"
                                                             Text="{Static res:IconFont.Plus}"
                                                             VerticalTextAlignment="Center" />
@@ -197,22 +198,22 @@
 
                         <Label
                             Padding="16,24,16,16"
-                            FontSize="Large"
+                            FontSize="{StaticResource FontSizeXXL}"
                             Text="Total" />
                         <StackLayout Padding="16,0" Orientation="Horizontal">
                             <Label
-                                FontSize="Medium"
+                                FontSize="{StaticResource FontSizeL}"
                                 Text="Subtotal"
                                 TextColor="DarkGray" />
                             <Label
                                 FontAttributes="Bold"
-                                FontSize="Medium"
+                                FontSize="{StaticResource FontSizeL}"
                                 HorizontalOptions="EndAndExpand"
                                 Text="VND 1000k" />
                         </StackLayout>
                         <StackLayout Padding="16,8" Orientation="Horizontal">
                             <Label
-                                FontSize="Medium"
+                                FontSize="{StaticResource FontSizeL}"
                                 Text="Delilery fee"
                                 TextColor="LimeGreen" />
                             <Label
@@ -221,10 +222,10 @@
                                 TextColor="LimeGreen" />
                         </StackLayout>
                         <StackLayout Padding="16,8" Orientation="Horizontal">
-                            <Label FontSize="Medium" Text="Total" />
+                            <Label FontSize="{StaticResource FontSizeL}" Text="Total" />
                             <Label
                                 FontAttributes="Bold"
-                                FontSize="Medium"
+                                FontSize="{StaticResource FontSizeL}"
                                 HorizontalOptions="EndAndExpand"
                                 Text="VND 1000k" />
                         </StackLayout>
@@ -232,11 +233,11 @@
 
                         <Label
                             Padding="16,24,16,0"
-                            FontSize="Large"
+                            FontSize="{StaticResource FontSizeXXL}"
                             Text="Pay with" />
 
                         <StackLayout Orientation="Horizontal" Spacing="0">
-                            <Image
+                            <ffimageloading:CachedImage
                                 Margin="16,8"
                                 Aspect="AspectFit"
                                 HeightRequest="48"
