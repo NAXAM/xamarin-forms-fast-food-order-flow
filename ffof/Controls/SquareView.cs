@@ -1,9 +1,10 @@
 ﻿using FFImageLoading.Forms;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace ffof.Controls
 {
-    public partial class SquareImage : CachedImage
+    public partial class SquareView : PancakeView
     {
         protected override void OnSizeAllocated(double width, double height)
         {
