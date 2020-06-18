@@ -14,7 +14,7 @@
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <Grid>
-        <StackLayout HeightRequest="850" VerticalOptions="Fill">
+        <StackLayout VerticalOptions="Fill">
             <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="iOS" Value="0,40,0,0" />
@@ -84,16 +84,28 @@
                                 CornerRadius="20,20,0,0">
                                 <StackLayout Orientation="Vertical">
                                     <pc:PancakeView
+                                        Padding="0"
                                         BackgroundColor="White"
                                         CornerRadius="20"
                                         HeightRequest="280"
                                         HorizontalOptions="Fill"
                                         IsClippedToBounds="True"
                                         WidthRequest="280">
-                                        <controls:SquareImage
-                                            d:Source="https://gigamall.com.vn/data/2019/09/20/11493168_Trung-t%C3%A2m-th%C6%B0%C6%A1ng-m%E1%BA%A1i-GIGAMALL-McDonalds-1.jpg"
-                                            Aspect="Fill"
-                                            Source="{Binding HighlightUrl}" />
+                                        <Grid BackgroundColor="Black">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentView Grid.Column="0" MinimumWidthRequest="0" />
+                                            <controls:SquareImage
+                                                Grid.Column="1"
+                                                d:Source="https://gigamall.com.vn/data/2019/09/20/11493168_Trung-t%C3%A2m-th%C6%B0%C6%A1ng-m%E1%BA%A1i-GIGAMALL-McDonalds-1.jpg"
+                                                Aspect="Fill"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Source="{Binding HighlightUrl}" />
+                                            <ContentView Grid.Column="2" MinimumWidthRequest="0" />
+                                        </Grid>
                                     </pc:PancakeView>
                                     <controls:BrandView BindingContext="{Binding .}" VerticalOptions="CenterAndExpand" />
 
