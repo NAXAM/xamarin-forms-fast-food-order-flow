@@ -40,7 +40,7 @@ namespace ffof.ViewModels
             }
         }
 
-        public ProductModel ShownProduct { get; set; }
+        public ProductModel CurrentProduct { get; set; }
 
         public ICommand ViewProductDetailCommand { get; set; }
 
@@ -57,14 +57,14 @@ namespace ffof.ViewModels
             var categoryFaker = new Faker<CategoryModel>()
                 .RuleFor(x => x.Code, o => o.Lorem.Slug(1))
                 .RuleFor(x => x.Name, o => o.Commerce.Categories(1)[0])
-                .RuleFor(x => x.PictureUrl, o => o.Image.PicsumUrl());
+                .RuleFor(x => x.PictureUrl, o => o.Image.LoremFlickrUrl());
             Categories = new ObservableCollection<CategoryModel>(categoryFaker.Generate(10));
 
             var productFaker = new Faker<ProductModel>()
                 .RuleFor(x => x.Pricing, o => o.Random.Double(10, 200))
                 .RuleFor(x => x.Category, o => o.PickRandom(Categories.Select(x => x.Name)))
                 .RuleFor(x => x.Name, o => o.Commerce.ProductName())
-                .RuleFor(x => x.PictureUrl, o => o.Image.PicsumUrl());
+                .RuleFor(x => x.PictureUrl, o => o.Image.LoremFlickrUrl());
 
             var items = productFaker.Generate(200);
 
@@ -74,7 +74,7 @@ namespace ffof.ViewModels
 
             ViewProductDetailCommand = new Command<ProductModel>(product =>
             {
-                ShownProduct = product;
+                CurrentProduct = product;
                 ProductShown = true;
                 HasCartItems = true;
             });
@@ -82,7 +82,7 @@ namespace ffof.ViewModels
             AddToCartCommand = new Command<ProductModel>(product =>
             {
                 ProductShown = false;
-                ShownProduct = null;
+                CurrentProduct = null;
             });
 
             GoBackCommand = new Command(() =>

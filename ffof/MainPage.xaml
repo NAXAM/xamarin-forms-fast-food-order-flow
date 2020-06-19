@@ -91,18 +91,13 @@
                                         IsClippedToBounds="True"
                                         WidthRequest="280">
                                         <Grid BackgroundColor="Black">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
                                             <ffimageloading:CachedImage
-                                                Grid.Column="1"
                                                 d:Source="https://gigamall.com.vn/data/2019/09/20/11493168_Trung-t%C3%A2m-th%C6%B0%C6%A1ng-m%E1%BA%A1i-GIGAMALL-McDonalds-1.jpg"
-                                                Aspect="AspectFill"
+                                                Aspect="AspectFit"
                                                 HeightRequest="280"
-                                                HorizontalOptions="CenterAndExpand"
-                                                Source="{Binding HighlightUrl}" />
+                                                HorizontalOptions="FillAndExpand"
+                                                Source="{Binding HighlightUrl}"
+                                                VerticalOptions="FillAndExpand" />
                                         </Grid>
                                     </controls:SquareView>
                                     <controls:BrandView BindingContext="{Binding .}" VerticalOptions="CenterAndExpand" />

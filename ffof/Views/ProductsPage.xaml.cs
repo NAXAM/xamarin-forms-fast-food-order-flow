@@ -65,10 +65,11 @@ namespace ffof.Views
         {
             if (e.VerticalOffset < 152)
             {
+                BrandLogo.IsVisible = true;
                 container.Margin = new Thickness(0, 152, 0, -152);
                 return;
             }
-
+            BrandLogo.IsVisible = false;
             var baseline = e.VerticalOffset - 152;
             var delta = Math.Max(152 - baseline, -(Device.RuntimePlatform == Device.iOS ? 32 : 24));
 
@@ -102,7 +103,7 @@ namespace ffof.Views
                         itemContainer.TranslateTo(itemContainer.X, originalY + itemContainer.Height * 1.1);
 
                         (BindingContext as ProductsViewModel).ProductShown = false;
-                        (BindingContext as ProductsViewModel).ShownProduct = null;
+                        (BindingContext as ProductsViewModel).CurrentProduct = null;
                     }
                     return;
                 default:

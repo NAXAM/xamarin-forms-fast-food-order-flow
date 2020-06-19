@@ -18,13 +18,15 @@
             </OnPlatform>
         </Grid.Padding>
         <Grid.RowDefinitions>
-            <RowDefinition Height="144" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <ffimageloading:CachedImage
+            x:Name="BrandLogo"
             Grid.Row="0"
+            Margin="20"
             Aspect="AspectFit"
             HeightRequest="96"
             HorizontalOptions="Center"
