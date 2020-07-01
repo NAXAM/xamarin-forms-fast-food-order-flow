@@ -12,15 +12,23 @@
     NavigationPage.HasNavigationBar="False">
     <Grid>
         <Grid.Padding>
-            <OnPlatform x:TypeArguments="Thickness">
-                <On Platform="iOS" Value="0,32,0,0" />
-                <On Platform="Android" Value="0,0,0,0" />
+            <OnPlatform
+                x:TypeArguments="Thickness">
+                <On
+                    Platform="iOS"
+                    Value="0,32,0,0" />
+                <On
+                    Platform="Android"
+                    Value="0,0,0,0" />
             </OnPlatform>
         </Grid.Padding>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
         </Grid.RowDefinitions>
 
         <ffimageloading:CachedImage
@@ -42,10 +50,13 @@
             CornerRadius="20"
             HasShadow="False"
             VerticalOptions="EndAndExpand">
-            <Grid RowSpacing="0">
+            <Grid
+                RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="144" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition
+                        Height="144" />
+                    <RowDefinition
+                        Height="*" />
                 </Grid.RowDefinitions>
                 <controls:BrandView
                     Margin="24,0"
@@ -65,20 +76,30 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="160" />
+                                    <RowDefinition
+                                        Height="160" />
                                 </Grid.RowDefinitions>
-                                <CollectionView ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding Categories}">
+                                <CollectionView
+                                    ItemSizingStrategy="MeasureFirstItem"
+                                    ItemsSource="{Binding Categories}">
                                     <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />
+                                        <LinearItemsLayout
+                                            ItemSpacing="0"
+                                            Orientation="Horizontal" />
                                     </CollectionView.ItemsLayout>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid Padding="8" BackgroundColor="White">
+                                            <Grid
+                                                Padding="8"
+                                                BackgroundColor="White">
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="144" />
+                                                    <RowDefinition
+                                                        Height="144" />
                                                 </Grid.RowDefinitions>
-                                                <pc:PancakeView CornerRadius="20">
-                                                    <StackLayout Spacing="2">
+                                                <pc:PancakeView
+                                                    CornerRadius="20">
+                                                    <StackLayout
+                                                        Spacing="2">
                                                         <ffimageloading:CachedImage
                                                             Margin="16,16,16,0"
                                                             Aspect="AspectFit"
@@ -110,15 +131,22 @@
                         </DataTemplate>
                     </CollectionView.GroupHeaderTemplate>
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                        <GridItemsLayout
+                            Orientation="Vertical"
+                            Span="2" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Padding="0,8" RowSpacing="0">
+                            <Grid
+                                Padding="0,8"
+                                RowSpacing="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="96" />
-                                    <RowDefinition Height="50" />
-                                    <RowDefinition Height="25" />
+                                    <RowDefinition
+                                        Height="96" />
+                                    <RowDefinition
+                                        Height="50" />
+                                    <RowDefinition
+                                        Height="25" />
                                 </Grid.RowDefinitions>
                                 <ffimageloading:CachedImage
                                     Aspect="AspectFit"
@@ -148,26 +176,33 @@
                                         Text="{Binding Pricing, StringFormat='VND {0:##,0}k'}"
                                         VerticalOptions="End" />
 
-                                    <pc:PancakeView BackgroundColor="AliceBlue" CornerRadius="12">
+                                    <pc:PancakeView
+                                        BackgroundColor="AliceBlue"
+                                        CornerRadius="12">
                                         <Grid
                                             ColumnSpacing="0"
                                             RowSpacing="0"
                                             VerticalOptions="Center">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="24" />
+                                                <ColumnDefinition
+                                                    Width="24" />
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="24" />
+                                                <RowDefinition
+                                                    Height="24" />  
                                             </Grid.RowDefinitions>
 
                                             <Label
+                                                FontAttributes="Bold"
                                                 FontFamily="Material"
-                                                HorizontalOptions="Center"
+                                                FontSize="{StaticResource FontSizeM}"
+                                                HorizontalTextAlignment="Center"
                                                 Text="{Static res:IconFont.Plus}"
-                                                VerticalOptions="End" />
-
+                                                VerticalTextAlignment="Center" />
                                             <Grid.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding BindingContext.ViewProductDetailCommand, Source={Reference root}}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer
+                                                    Command="{Binding BindingContext.ViewProductDetailCommand, Source={Reference root}}"
+                                                    CommandParameter="{Binding .}" />
                                             </Grid.GestureRecognizers>
                                         </Grid>
                                     </pc:PancakeView>
@@ -189,7 +224,8 @@
             TextColor="DimGray"
             VerticalOptions="Start">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoBackCommand}" />
+                <TapGestureRecognizer
+                    Command="{Binding GoBackCommand}" />
             </Label.GestureRecognizers>
         </Label>
 
@@ -200,9 +236,12 @@
             IsVisible="{Binding HasCartItems}"
             VerticalOptions="End">
             <Grid.RowDefinitions>
-                <RowDefinition Height="48" />
+                <RowDefinition
+                    Height="48" />
             </Grid.RowDefinitions>
-            <pc:PancakeView BackgroundColor="Black" CornerRadius="24">
+            <pc:PancakeView
+                BackgroundColor="Black"
+                CornerRadius="24">
                 <Label
                     Padding="24,0"
                     FontAttributes="Bold"
@@ -212,7 +251,9 @@
                     VerticalOptions="Center" />
 
                 <pc:PancakeView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ViewCartCommand}" CommandParameter="{Binding ShownProduct}" />
+                    <TapGestureRecognizer
+                        Command="{Binding ViewCartCommand}"
+                        CommandParameter="{Binding ShownProduct}" />
                 </pc:PancakeView.GestureRecognizers>
             </pc:PancakeView>
         </Grid>
@@ -223,9 +264,14 @@
             BackgroundColor="#9A000000"
             IsVisible="false">
             <Grid.Margin>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="iOS" Value="0,-32,0,0" />
-                    <On Platform="Android" Value="0,-24,0,0" />
+                <OnPlatform
+                    x:TypeArguments="Thickness">
+                    <On
+                        Platform="iOS"
+                        Value="0,-32,0,0" />
+                    <On
+                        Platform="Android"
+                        Value="0,-24,0,0" />
                 </OnPlatform>
             </Grid.Margin>
             <pc:PancakeView
@@ -233,12 +279,17 @@
                 BackgroundColor="White"
                 CornerRadius="20"
                 VerticalOptions="EndAndExpand">
-                <Grid RowSpacing="0">
+                <Grid
+                    RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="24" />
-                        <RowDefinition Height="144" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="96" />
+                        <RowDefinition
+                            Height="24" />
+                        <RowDefinition
+                            Height="144" />
+                        <RowDefinition
+                            Height="*" />
+                        <RowDefinition
+                            Height="96" />
                     </Grid.RowDefinitions>
 
 
@@ -251,7 +302,8 @@
                             VerticalOptions="Center"
                             WidthRequest="72" />
                         <ContentView.GestureRecognizers>
-                            <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
+                            <PanGestureRecognizer
+                                PanUpdated="PanGestureRecognizer_PanUpdated" />
                         </ContentView.GestureRecognizers>
                     </ContentView>
 
@@ -263,12 +315,16 @@
                         Source="https://gigamall.com.vn/data/2019/09/20/11493168_Trung-t%C3%A2m-th%C6%B0%C6%A1ng-m%E1%BA%A1i-GIGAMALL-McDonalds-1.jpg"
                         VerticalOptions="Center" />
 
-                    <StackLayout Grid.Row="2" Spacing="0">
+                    <StackLayout
+                        Grid.Row="2"
+                        Spacing="0">
                         <Label
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
                             Text="Big Mac Burger" />
-                        <Label HorizontalTextAlignment="Center" Text="AED 24" />
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Text="AED 24" />
 
                         <Label
                             Padding="24,16"
@@ -279,15 +335,19 @@
 
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="128" />
+                                <RowDefinition
+                                    Height="128" />
                             </Grid.RowDefinitions>
 
                             <CollectionView>
                                 <CollectionView.ItemsLayout>
-                                    <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />
+                                    <LinearItemsLayout
+                                        ItemSpacing="0"
+                                        Orientation="Horizontal" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemsSource>
-                                    <Array Type="{Type x:String}">
+                                    <Array
+                                        Type="{Type x:String}">
                                         <x:String>1</x:String>
                                         <x:String>1</x:String>
                                         <x:String>1</x:String>
@@ -300,13 +360,18 @@
                                 </CollectionView.ItemsSource>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Padding="0" RowSpacing="0">
+                                        <Grid
+                                            Padding="0"
+                                            RowSpacing="0">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="112" />
+                                                <ColumnDefinition
+                                                    Width="112" />
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="80" />
-                                                <RowDefinition Height="32" />
+                                                <RowDefinition
+                                                    Height="80" />
+                                                <RowDefinition
+                                                    Height="32" />
                                             </Grid.RowDefinitions>
 
                                             <pc:PancakeView
@@ -343,7 +408,8 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="64" />
+                            <RowDefinition
+                                Height="64" />
                         </Grid.RowDefinitions>
 
                         <pc:PancakeView
@@ -396,7 +462,9 @@
                                 VerticalOptions="Center" />
 
                             <pc:PancakeView.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddToCartCommand}" CommandParameter="{Binding ShownProduct}" />
+                                <TapGestureRecognizer
+                                    Command="{Binding AddToCartCommand}"
+                                    CommandParameter="{Binding ShownProduct}" />
                             </pc:PancakeView.GestureRecognizers>
                         </pc:PancakeView>
                     </Grid>

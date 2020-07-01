@@ -12,8 +12,6 @@ namespace ffof
         {
             InitializeComponent();
             MainPage = new NavigationPage(new MainPage());
-            CachedImage.FixedOnMeasureBehavior = true;
-            CachedImage.FixedAndroidMotionEventHandler = true;
         }
 
         protected override void OnStart()

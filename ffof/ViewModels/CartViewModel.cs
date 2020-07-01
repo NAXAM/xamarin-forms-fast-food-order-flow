@@ -4,7 +4,7 @@ using System.Windows.Input;
 using Bogus;
 using ffof.Models;
 using Xamarin.Forms;
-
+using ffof.Views;
 namespace ffof.ViewModels
 {
     public class CartViewModel
@@ -13,7 +13,21 @@ namespace ffof.ViewModels
 
         public ObservableCollection<ProductModel> RelevantProducts { get; set; }
 
+        public string TotalPrice
+        {
+            get
+            {
+                double result = 0;
+                foreach(var product in Products)
+                {
+                    result += product.Pricing;
+                }
+                return String.Format("{0:0.00}", result);
+            }
+        }
         public ICommand GoBackCommand { get; set; }
+
+        public ICommand OrderCommand { get; set; }
 
         public CartViewModel(INavigation navigation)
         {
@@ -31,6 +45,11 @@ namespace ffof.ViewModels
             GoBackCommand = new Command(() =>
             {
                 navigation.PopAsync();
+            });
+
+            OrderCommand = new Command(() =>
+            {
+                navigation.PushAsync(new FinishPage());
             });
         }
     }

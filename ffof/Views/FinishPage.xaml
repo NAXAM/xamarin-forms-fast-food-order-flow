@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:ffof.Helpers;assembly=ffof"
+    x:Class="ffof.Views.FinishPage" BackgroundColor="Orange">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolRevertConverter x:Key="BoolRevertConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Spacing="10" VerticalOptions="Center">
+            <ActivityIndicator IsRunning="True" Color="#d0d0d0" IsVisible="{Binding IsProcessing}"/>
+            <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" Text="Sit tight..." IsVisible="{Binding IsProcessing}"/>
+            <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" Text="We're placing your order" IsVisible="{Binding IsProcessing}"/>
+            <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Text="Order placed successfully" IsVisible="{Binding IsProcessing, Converter={StaticResource BoolRevertConverter}}"/>
+            <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" Text="You will recieve your tasty food" IsVisible="{Binding IsProcessing, Converter={StaticResource BoolRevertConverter}}"/>
+            <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" Text="in 10-15 minutes" IsVisible="{Binding IsProcessing, Converter={StaticResource BoolRevertConverter}}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
