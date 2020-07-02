@@ -17,14 +17,15 @@ namespace ffof.ViewModels
         {
             get
             {
-                double result = 0;
-                foreach(var product in Products)
+                int result = 0;
+                foreach (var product in Products)
                 {
-                    result += product.Pricing;
+                    result += (int)product.Pricing;
                 }
-                return String.Format("{0:0.00}", result);
+                return String.Format("{0}k", result);
             }
         }
+
         public ICommand GoBackCommand { get; set; }
 
         public ICommand OrderCommand { get; set; }

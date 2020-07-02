@@ -1,19 +1,54 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Frame xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       x:Class="ffof.Controls.Stepper" HasShadow="False" VerticalOptions="Start"
-       Padding="16,0" HeightRequest="40" BackgroundColor="#F1DFBF">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="20" />
-        </Grid.ColumnDefinitions>
-
-        <Button FontSize="24" Text="-" VerticalOptions="Center"
-            HorizontalOptions="Center" />
-        <Label Text="1"
-            VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" VerticalTextAlignment="Center"/>
-        <Button FontSize="24" Text="+" VerticalOptions="Center"
-            HorizontalOptions="Center" Grid.Column="2" />
-    </Grid>
-</Frame>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:controls="clr-namespace:ffof.Controls"
+    xmlns:res="clr-namespace:ffof.Resources"
+    x:Class="ffof.Controls.Stepper"
+    x:Name="stepper">
+    <pc:PancakeView
+        Margin="8"
+        BorderColor="DarkCyan"
+        BorderThickness="1"
+        CornerRadius="24">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label
+                FontAttributes="Bold"
+                FontFamily="Material"
+                FontSize="{StaticResource FontSizeXL}"
+                HorizontalTextAlignment="Center"
+                Text="{Static res:IconFont.Minus}"
+                VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding MinusCommand}" CommandParameter="{Binding Source={x:Reference txtVolume}, Path=Text}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <controls:BorderlessEntry
+                Grid.Column="1"
+                x:Name="txtVolume"
+                FontAttributes="Bold"
+                FontSize="{StaticResource FontSizeM}"
+                HorizontalTextAlignment="Center"
+                Text="{Binding CurrentValue}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Column="2"
+                FontAttributes="Bold"
+                FontFamily="Material"
+                FontSize="{StaticResource FontSizeXL}"
+                HorizontalTextAlignment="Center"
+                Text="{Static res:IconFont.Plus}"
+                VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PlusCommand}" CommandParameter="{Binding Source={x:Reference txtVolume}, Path=Text}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </pc:PancakeView>
+</ContentView>

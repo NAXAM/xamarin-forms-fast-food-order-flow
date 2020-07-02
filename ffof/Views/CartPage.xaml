@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:controls="clr-namespace:ffof.Controls"
     xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:res="clr-namespace:ffof.Resources"
     NavigationPage.HasNavigationBar="False">
@@ -98,46 +99,7 @@
                                 Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
                         </StackLayout>
 
-                        <pc:PancakeView
-                            Grid.Column="2"
-                            Margin="0,8,16,8"
-                            BorderColor="DarkGray"
-                            BorderThickness="1"
-                            CornerRadius="24"
-                            VerticalOptions="Center">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition
-                                        Height="48" />
-                                </Grid.RowDefinitions>
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontFamily="Material"
-                                    FontSize="{StaticResource FontSizeXL}"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Static res:IconFont.Minus}"
-                                    VerticalTextAlignment="Center" />
-                                <Label
-                                    Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    HorizontalTextAlignment="Center"
-                                    Text="100"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    Grid.Column="2"
-                                    FontAttributes="Bold"
-                                    FontFamily="Material"
-                                    FontSize="{StaticResource FontSizeXL}"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Static res:IconFont.Plus}"
-                                    VerticalTextAlignment="Center" />
-                            </Grid>
-                        </pc:PancakeView>
+                        <controls:Stepper Grid.Column="2"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
