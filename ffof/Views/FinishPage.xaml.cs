@@ -13,7 +13,7 @@ namespace ffof.Views
 
             NavigationPage.SetHasNavigationBar(this, false);
             systemStyleManager = DependencyService.Get<ISystemStyleManager>();
-            systemStyleManager.SetStatusBarColor(Color.Orange.ToHex(),false);
+            systemStyleManager?.SetStatusBarColor(Color.Orange.ToHex(),false);
             BindingContext = new FinishViewModel(Navigation);
             Device.BeginInvokeOnMainThread(async() => { await (BindingContext as FinishViewModel).Process(); });
         }

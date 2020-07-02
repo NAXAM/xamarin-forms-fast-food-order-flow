@@ -7,11 +7,14 @@ namespace ffof.Controls
     public partial class SlideView : Grid
     {
         private bool _isActive;
+        private bool _firstTime;
         private MainViewModel vm;
         public SlideView()
         {
+            _firstTime = true;
             InitializeComponent();
         }
+
         protected override void OnParentSet()
         {
             base.OnParentSet();
@@ -25,15 +28,19 @@ namespace ffof.Controls
 
         private void CarouselViewControlOnScrolled(object sender, ItemsViewScrolledEventArgs e)
         {
+            if (_firstTime)
+            {
+                _firstTime = false;
+                return;
+            }
+
             if (_isActive)
             {
-                pcView.FadeTo((100 - e.HorizontalDelta) / 100);
-                pcView.ScaleTo((100 - e.HorizontalDelta) / 100);
+                pcView.Margin = new Thickness(20, 0);
             }
             else
             {
-                pcView.FadeTo(e.HorizontalDelta / 100);
-                pcView.ScaleTo(e.HorizontalDelta / 100);
+                pcView.Margin = new Thickness(20);
             }
         }
 

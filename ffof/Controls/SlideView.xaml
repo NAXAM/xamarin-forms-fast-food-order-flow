@@ -34,7 +34,7 @@
         CornerRadius="20,20,0,0">
         <StackLayout
             Orientation="Vertical"
-            Margin="0,0,0,-100">
+            Spacing="0">
             <controls:SquareView
                 Padding="0"
                 BackgroundColor="White"

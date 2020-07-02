@@ -1,5 +1,4 @@
-﻿using FFImageLoading.Forms;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 
 namespace ffof.Controls

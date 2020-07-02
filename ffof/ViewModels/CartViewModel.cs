@@ -50,7 +50,7 @@ namespace ffof.ViewModels
 
             OrderCommand = new Command(() =>
             {
-                navigation.PushAsync(new FinishPage());
+                navigation.PushModalAsync(new FinishPage());
             });
         }
     }

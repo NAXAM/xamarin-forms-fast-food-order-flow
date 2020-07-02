@@ -25,6 +25,8 @@
                 Height="48" />
             <RowDefinition
                 Height="*" />
+            <RowDefinition
+                Height="Auto" />
         </Grid.RowDefinitions>
 
         <Label
@@ -99,184 +101,188 @@
                                 Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
                         </StackLayout>
 
-                        <controls:Stepper Grid.Column="2"/>
+                        <controls:Stepper
+                            Grid.Column="2" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            <CollectionView.FooterTemplate>
-                <DataTemplate>
-                    <StackLayout
-                        Spacing="0">
-                        <Label
-                            Padding="16"
-                            Text="Your might like" />
-                        <CarouselView
-                            HeightRequest="112"
-                            ItemsSource="{Binding RelevantProducts}"
-                            PeekAreaInsets="16">
-                            <CarouselView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid
-                                        Padding="8">
-                                        <pc:PancakeView
-                                            Padding="8"
-                                            BackgroundColor="White"
-                                            BorderColor="DarkGray"
-                                            BorderThickness="1"
-                                            CornerRadius="12"
-                                            HasShadow="False">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition
-                                                        Width="72" />
-                                                    <ColumnDefinition
-                                                        Width="*" />
-                                                    <ColumnDefinition
-                                                        Width="48" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition
-                                                        Height="72" />
-                                                </Grid.RowDefinitions>
 
-                                                <ffimageloading:CachedImage
-                                                    Margin="16"
-                                                    Aspect="AspectFill"
-                                                    Source="{Binding PictureUrl}" />
-
-                                                <StackLayout
-                                                    Grid.Column="1"
-                                                    VerticalOptions="Center">
-                                                    <Label
-                                                        FontSize="{StaticResource FontSizeL}"
-                                                        Text="{Binding Name}" />
-                                                    <Label
-                                                        FontAttributes="Bold"
-                                                        FontSize="{StaticResource FontSizeL}"
-                                                        Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
-                                                </StackLayout>
-                                                <pc:PancakeView
-                                                    Grid.Column="2"
-                                                    Margin="8"
-                                                    BorderColor="DarkGray"
-                                                    BorderThickness="1"
-                                                    CornerRadius="16"
-                                                    VerticalOptions="End">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition
-                                                                Width="32" />
-                                                        </Grid.ColumnDefinitions>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition
-                                                                Height="32" />
-                                                        </Grid.RowDefinitions>
-                                                        <Label
-                                                            FontAttributes="Bold"
-                                                            FontFamily="Material"
-                                                            FontSize="{StaticResource FontSizeIcon}"
-                                                            HorizontalTextAlignment="Center"
-                                                            Text="{Static res:IconFont.Plus}"
-                                                            VerticalTextAlignment="Center" />
-                                                    </Grid>
-                                                </pc:PancakeView>
-                                            </Grid>
-                                        </pc:PancakeView>
-                                    </Grid>
-                                </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>
-
-                        <Label
-                            Padding="16,24,16,16"
-                            FontSize="{StaticResource FontSizeXXL}"
-                            Text="Total" />
-                        <StackLayout
-                            Padding="16,0"
-                            Orientation="Horizontal">
-                            <Label
-                                FontSize="{StaticResource FontSizeL}"
-                                Text="Subtotal"
-                                TextColor="DarkGray" />
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="{StaticResource FontSizeL}"
-                                HorizontalOptions="EndAndExpand">
-                                <Label.Text>
-                                    <MultiBinding StringFormat="VND {0}">
-                                        <Binding Path="TotalPrice"/>
-                                    </MultiBinding>
-                                </Label.Text>
-                            </Label>
-                        </StackLayout>
-                        <StackLayout
-                            Padding="16,8"
-                            Orientation="Horizontal">
-                            <Label
-                                FontSize="{StaticResource FontSizeL}"
-                                Text="Delilery fee"
-                                TextColor="LimeGreen" />
-                            <Label
-                                HorizontalOptions="EndAndExpand"
-                                Text="Free"
-                                TextColor="LimeGreen" />
-                        </StackLayout>
-                        <StackLayout
-                            Padding="16,8"
-                            Orientation="Horizontal">
-                            <Label
-                                FontSize="{StaticResource FontSizeL}"
-                                Text="Total" />
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="{StaticResource FontSizeL}"
-                                HorizontalOptions="EndAndExpand">
-                                <Label.Text>
-                                    <MultiBinding StringFormat="VND {0}">
-                                        <Binding Path="TotalPrice"/>
-                                    </MultiBinding>
-                                </Label.Text>
-                            </Label>
-                        </StackLayout>
-
-
-                        <Label
-                            Padding="16,24,16,0"
-                            FontSize="{StaticResource FontSizeXXL}"
-                            Text="Pay with" />
-
-                        <StackLayout
-                            Orientation="Horizontal"
-                            Spacing="0">
-                            <ffimageloading:CachedImage
-                                Margin="16,8"
-                                Aspect="AspectFit"
-                                HeightRequest="48"
-                                Source="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Font_Awesome_5_brands_cc-apple-pay.svg/512px-Font_Awesome_5_brands_cc-apple-pay.svg.png" />
-
-                            <Label
-                                Text="Apple Pay"
-                                VerticalTextAlignment="Center" />
-                        </StackLayout>
-                        <pc:PancakeView
-                            Margin="24"
-                            BackgroundColor="Black"
-                            CornerRadius="24"
-                            HeightRequest="48">
-                            <Label
-                                Padding="16,0"
-                                FontAttributes="Bold"
-                                HorizontalTextAlignment="Center"
-                                Text="Pay VND 1000k"
-                                TextColor="White"
-                                VerticalOptions="Center" />
-                            <pc:PancakeView.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OrderCommand}"/>
-                            </pc:PancakeView.GestureRecognizers>
-                        </pc:PancakeView>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.FooterTemplate>
         </CollectionView>
+        <StackLayout
+            Grid.Row="2"
+            Spacing="0">
+            <Label
+                Padding="16"
+                Text="You might like" />
+            <CarouselView
+                HeightRequest="112"
+                ItemsSource="{Binding RelevantProducts}"
+                PeekAreaInsets="16">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Padding="8">
+                            <pc:PancakeView
+                                Padding="8"
+                                BackgroundColor="White"
+                                BorderColor="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="12"
+                                HasShadow="False">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
+                                            Width="72" />
+                                        <ColumnDefinition
+                                            Width="*" />
+                                        <ColumnDefinition
+                                            Width="48" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition
+                                            Height="72" />
+                                    </Grid.RowDefinitions>
+
+                                    <ffimageloading:CachedImage
+                                        Margin="16"
+                                        Aspect="AspectFill"
+                                        Source="{Binding PictureUrl}" />
+
+                                    <StackLayout
+                                        Grid.Column="1"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            FontSize="{StaticResource FontSizeL}"
+                                            Text="{Binding Name}" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="{StaticResource FontSizeL}"
+                                            Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
+                                    </StackLayout>
+                                    <pc:PancakeView
+                                        Grid.Column="2"
+                                        Margin="8"
+                                        BorderColor="DarkGray"
+                                        BorderThickness="1"
+                                        CornerRadius="16"
+                                        VerticalOptions="End">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition
+                                                    Width="32" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                                    Height="32" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontFamily="Material"
+                                                FontSize="{StaticResource FontSizeIcon}"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Static res:IconFont.Plus}"
+                                                VerticalTextAlignment="Center" />
+                                        </Grid>
+                                    </pc:PancakeView>
+                                </Grid>
+                            </pc:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <Label
+                Padding="16,24,16,16"
+                FontSize="{StaticResource FontSizeXXL}"
+                Text="Total" />
+            <StackLayout
+                Padding="16,0"
+                Orientation="Horizontal">
+                <Label
+                    FontSize="{StaticResource FontSizeL}"
+                    Text="Subtotal"
+                    TextColor="DarkGray" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="{StaticResource FontSizeL}"
+                    HorizontalOptions="EndAndExpand">
+                    <Label.Text>
+                        <MultiBinding
+                            StringFormat="VND {0}">
+                            <Binding
+                                Path="TotalPrice" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+            <StackLayout
+                Padding="16,8"
+                Orientation="Horizontal">
+                <Label
+                    FontSize="{StaticResource FontSizeL}"
+                    Text="Delilery fee"
+                    TextColor="LimeGreen" />
+                <Label
+                    HorizontalOptions="EndAndExpand"
+                    Text="Free"
+                    TextColor="LimeGreen" />
+            </StackLayout>
+            <StackLayout
+                Padding="16,8"
+                Orientation="Horizontal">
+                <Label
+                    FontSize="{StaticResource FontSizeL}"
+                    Text="Total" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="{StaticResource FontSizeL}"
+                    HorizontalOptions="EndAndExpand">
+                    <Label.Text>
+                        <MultiBinding
+                            StringFormat="VND {0}">
+                            <Binding
+                                Path="TotalPrice" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+
+
+            <Label
+                Padding="16,24,16,0"
+                FontSize="{StaticResource FontSizeXXL}"
+                Text="Pay with" />
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0">
+                <ffimageloading:CachedImage
+                    Margin="16,8"
+                    Aspect="AspectFit"
+                    HeightRequest="48"
+                    Source="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Font_Awesome_5_brands_cc-apple-pay.svg/512px-Font_Awesome_5_brands_cc-apple-pay.svg.png" />
+
+                <Label
+                    Text="Apple Pay"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
+            <pc:PancakeView
+                Margin="24"
+                BackgroundColor="Black"
+                CornerRadius="24"
+                HeightRequest="48">
+                <Label
+                    Padding="16,0"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Pay VND 1000k"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <pc:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding OrderCommand}" />
+                </pc:PancakeView.GestureRecognizers>
+            </pc:PancakeView>
+        </StackLayout>
     </Grid>
 </ContentPage>

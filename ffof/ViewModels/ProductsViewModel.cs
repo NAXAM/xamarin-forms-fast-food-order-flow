@@ -6,6 +6,7 @@ using Bogus;
 using ffof.Models;
 using ffof.Views;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace ffof.ViewModels
 {
@@ -19,6 +20,8 @@ namespace ffof.ViewModels
         public ObservableCollection<IGrouping<string, ProductModel>> Products { get; set; }
 
         public ObservableCollection<CategoryModel> Categories { get; set; }
+
+        public double ScreenWidth => DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
 
         public bool ProductShown
         {

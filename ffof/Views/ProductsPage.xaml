@@ -4,12 +4,18 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ffof.Controls"
+    xmlns:converters="clr-namespace:ffof.Helpers;assembly=ffof"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:res="clr-namespace:ffof.Resources"
     x:Name="root"
     BackgroundColor="{Binding Brand.ColorCode}"
     NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:WidthToHeightConverter x:Key="WidthToHeightConveter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <Grid.Padding>
             <OnPlatform
@@ -19,12 +25,12 @@
                     Value="0,32,0,0" />
                 <On
                     Platform="Android"
-                    Value="0,0,0,0" />
+                    Value="0" />
             </OnPlatform>
         </Grid.Padding>
         <Grid.RowDefinitions>
             <RowDefinition
-                Height="Auto" />
+                Height="{Binding ScreenWidth, Converter={StaticResource WidthToHeightConveter}, ConverterParameter=0.125, Source={Reference root}}" />
             <RowDefinition
                 Height="Auto" />
             <RowDefinition
@@ -56,71 +62,61 @@
                     <RowDefinition
                         Height="144" />
                     <RowDefinition
+                        Height="144"/>
+                    <RowDefinition
                         Height="*" />
                 </Grid.RowDefinitions>
                 <controls:BrandView
+                    Grid.Row="0"
                     Margin="24,0"
                     BindingContext="{Binding Brand}"
                     VerticalOptions="Center" />
+                <CollectionView
+                    Grid.Row="1"
+                    ItemSizingStrategy="MeasureFirstItem"
+                    ItemsSource="{Binding Categories}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout
+                            ItemSpacing="0"
+                            Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Padding="8"
+                                BackgroundColor="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="144" />
+                                </Grid.RowDefinitions>
+                                <pc:PancakeView
+                                    CornerRadius="20">
+                                    <StackLayout
+                                        Spacing="2">
+                                        <ffimageloading:CachedImage
+                                            Margin="16,16,16,0"
+                                            Aspect="AspectFit"
+                                            HeightRequest="96"
+                                            Source="{Binding PictureUrl}"
+                                            WidthRequest="72" />
 
+                                        <Label
+                                            FontSize="{StaticResource FontSizeM}"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Name}" />
+                                    </StackLayout>
+                                </pc:PancakeView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
                 <CollectionView
                     x:Name="lstProducts"
-                    Grid.Row="1"
-                    Header="{Binding Categories}"
+                    Grid.Row="2"
                     IsGrouped="True"
                     ItemSizingStrategy="{OnPlatform Android=MeasureAllItems,
                                                     iOS=MeasureFirstItem}"
                     ItemsSource="{Binding Products}">
-
-                    <CollectionView.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition
-                                        Height="160" />
-                                </Grid.RowDefinitions>
-                                <CollectionView
-                                    ItemSizingStrategy="MeasureFirstItem"
-                                    ItemsSource="{Binding Categories}">
-                                    <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout
-                                            ItemSpacing="0"
-                                            Orientation="Horizontal" />
-                                    </CollectionView.ItemsLayout>
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid
-                                                Padding="8"
-                                                BackgroundColor="White">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition
-                                                        Height="144" />
-                                                </Grid.RowDefinitions>
-                                                <pc:PancakeView
-                                                    CornerRadius="20">
-                                                    <StackLayout
-                                                        Spacing="2">
-                                                        <ffimageloading:CachedImage
-                                                            Margin="16,16,16,0"
-                                                            Aspect="AspectFit"
-                                                            HeightRequest="96"
-                                                            Source="{Binding PictureUrl}"
-                                                            WidthRequest="72" />
-
-                                                        <Label
-                                                            FontSize="{StaticResource FontSizeM}"
-                                                            HorizontalTextAlignment="Center"
-                                                            Text="{Binding Name}" />
-                                                    </StackLayout>
-                                                </pc:PancakeView>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.HeaderTemplate>
-
                     <CollectionView.GroupHeaderTemplate>
                         <DataTemplate>
                             <Label
@@ -189,7 +185,7 @@
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition
-                                                    Height="24" />  
+                                                    Height="24" />
                                             </Grid.RowDefinitions>
 
                                             <Label
@@ -216,6 +212,7 @@
 
         <Label
             Padding="16"
+            Grid.Row="0"
             BackgroundColor="Transparent"
             FontFamily="Material"
             FontSize="{StaticResource FontSizeIcon}"
@@ -260,7 +257,7 @@
 
         <Grid
             Grid.Row="0"
-            Grid.RowSpan="2"
+            Grid.RowSpan="3"
             BackgroundColor="#9A000000"
             IsVisible="false">
             <Grid.Margin>
@@ -412,7 +409,7 @@
                                 Height="64" />
                         </Grid.RowDefinitions>
 
-                        <controls:Stepper/>
+                        <controls:Stepper />
 
                         <pc:PancakeView
                             Grid.Column="1"
