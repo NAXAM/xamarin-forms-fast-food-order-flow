@@ -71,7 +71,6 @@ namespace ffof.Views
             }
             BrandLogo.IsVisible = false;
             var baseline = e.VerticalOffset - 152;
-            var delta = Math.Max(152 - baseline, -(Device.RuntimePlatform == Device.iOS ? 32 : 24));
             var delta = Math.Max(152 - baseline, -(Device.RuntimePlatform == Device.iOS ? 32 : 0));
 
             container.Margin = new Thickness(0, delta, 0, Math.Min(-delta, 0));
