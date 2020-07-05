@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using Bogus;
@@ -21,6 +20,8 @@ namespace ffof.ViewModels
         public ObservableCollection<IGrouping<string, ProductModel>> Products { get; set; }
 
         public ObservableCollection<CategoryModel> Categories { get; set; }
+
+        public ObservableCollection<MaterialModel> Materials { get; set; }
 
         public double ScreenWidth => DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
 
@@ -59,6 +60,12 @@ namespace ffof.ViewModels
             Products = new ObservableCollection<IGrouping<string, ProductModel>>(
                 items.GroupBy(x => x.Category)
                 );
+
+            var materialFaker = new Faker<MaterialModel>()
+                .RuleFor(x => x.Name, o => o.Commerce.ProductMaterial())
+                .RuleFor(x => x.PictureUrl, o => o.Image.LoremFlickrUrl(240,240));
+
+            Materials = new ObservableCollection<MaterialModel>(materialFaker.Generate(10));
 
             ViewProductDetailCommand = new Command<ProductModel>(product =>
             {

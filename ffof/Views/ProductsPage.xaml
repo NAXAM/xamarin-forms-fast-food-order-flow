@@ -323,37 +323,38 @@
                             Text="VND 24k" />
 
                         <Label
-                            Padding="24,16"
-                            FontSize="Small"
+                            Padding="24,30,24,0"
+                            FontSize="{StaticResource FontSizeM}"
+                            TextColor="LightSlateGray"
                             HorizontalTextAlignment="Center"
-                            Text="A big and tasty Halal beef patty smothered in our one of a king Big Tasty Sauce and 3 slices of elemental chesse... " />
-
-
+                            Text="A big and tasty Halal beef patty smothered in  " />
+                        <Label
+                            Padding="24,0"
+                            FontSize="{StaticResource FontSizeM}"
+                            TextColor="LightSlateGray"
+                            HorizontalTextAlignment="Center"
+                            Text="our one of a king Big Tasty Sauce and 3"
+                            />
+                        <Label
+                            Padding="24,0,24,30"
+                            FontSize="{StaticResource FontSizeM}"
+                            TextColor="LightSlateGray"
+                            HorizontalTextAlignment="Center"
+                            Text="slices of elemental chesse..."
+                            />
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition
                                     Height="128" />
                             </Grid.RowDefinitions>
 
-                            <CollectionView>
+                            <CollectionView ItemsSource="{Binding Materials}">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout
                                         ItemSpacing="0"
                                         Orientation="Horizontal" />
                                 </CollectionView.ItemsLayout>
-                                <CollectionView.ItemsSource>
-                                    <Array
-                                        Type="{Type x:String}">
-                                        <x:String>1</x:String>
-                                        <x:String>1</x:String>
-                                        <x:String>1</x:String>
-                                        <x:String>1</x:String>
-                                        <x:String>1</x:String>
-                                        <x:String>1</x:String>
-                                        <x:String>1</x:String>
-                                        <x:String>1</x:String>
-                                    </Array>
-                                </CollectionView.ItemsSource>
+                                
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid
@@ -376,11 +377,11 @@
                                                 BackgroundColor="AliceBlue"
                                                 CornerRadius="40"
                                                 Grid.Row="0">
-                                                <Image
-                                                    Aspect="AspectFit"
+                                                <ffimageloading:CachedImage
                                                     VerticalOptions="Center"
                                                     HorizontalOptions="Center"
-                                                    Source="https://gigamall.com.vn/data/2019/09/20/11493168_Trung-t%C3%A2m-th%C6%B0%C6%A1ng-m%E1%BA%A1i-GIGAMALL-McDonalds-1.jpg" />
+                                                    Aspect="AspectFit"
+                                                    Source="{Binding PictureUrl}"/>
                                             </pc:PancakeView>
 
                                             <Label
@@ -388,7 +389,7 @@
                                                 FontSize="Small"
                                                 VerticalOptions="Center"
                                                 HorizontalTextAlignment="Center"
-                                                Text="Big Fun" />
+                                                Text="{Binding Name}" />
                                         </Grid>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
