@@ -7,21 +7,31 @@ namespace ffof.Controls
     [AddINotifyPropertyChangedInterface]
     public class StepperViewModel
     {
-        public int CurrentValue { get; set; }
+        private const int MaxVolume = 99;
+        private const int MinVolume = 1;
         public ICommand MinusCommand { get; set; }
         public ICommand PlusCommand { get; set; }
-        public StepperViewModel(int value)
+        public StepperViewModel()
         {
-            CurrentValue = value;
-
-            MinusCommand = new Command<string>(param =>
+            MinusCommand = new Command<Label>(param =>
             {
-                CurrentValue = int.Parse(param) - 1;
+                
+                int currentVolume = int.Parse((param as Label).Text);
+                if (currentVolume == MinVolume)
+                {
+                    return;
+                }
+                (param as Label).Text = (currentVolume - 1).ToString();
             });
 
-            PlusCommand = new Command<string>(param =>
+            PlusCommand = new Command<Label>(param =>
             {
-                CurrentValue = int.Parse(param) + 1;
+                int currentVolume = int.Parse((param as Label).Text);
+                if (currentVolume == MaxVolume)
+                {
+                    return;
+                }
+                (param as Label).Text = (currentVolume + 1).ToString();
             });
         }
     }
@@ -30,7 +40,7 @@ namespace ffof.Controls
     {
         public Stepper()
         {
-            this.BindingContext = new StepperViewModel(1);
+            this.BindingContext = new StepperViewModel();
 
             InitializeComponent();
         }

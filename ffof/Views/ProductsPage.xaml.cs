@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using ffof.Models;
 using ffof.ViewModels;
 using Xamarin.Forms;
@@ -33,7 +35,6 @@ namespace ffof.Views
             BindingContext = new ProductsViewModel(Navigation, brand);
 
             (BindingContext as INotifyPropertyChanged).PropertyChanged += ProductsPage_PropertyChanged;
-
             lstProducts.Scrolled += LstProducts_Scrolled;
         }
 
@@ -61,17 +62,35 @@ namespace ffof.Views
             }
         }
 
-        private void LstProducts_Scrolled(object sender, ItemsViewScrolledEventArgs e)
+        CancellationTokenSource tcs;
+
+        double currentOffset;
+        void LstProducts_Scrolled(object sender, ItemsViewScrolledEventArgs e)
         {
+            //tcs?.Cancel();
+
+            //tcs = new CancellationTokenSource();
+
+            //var canceled = await Task.Delay(10, tcs.Token)
+            //    .ContinueWith(t =>
+            //    {
+            //        return t.IsCanceled;
+            //    });
+
+            ////if (canceled) return;
+            //var ep = Math.Abs(e.VerticalOffset - currentOffset);
+            //if (ep < 0.5)
+            //{
+            //    return;
+            //}
+
+            currentOffset = e.VerticalOffset;
             if (e.VerticalOffset < 152)
             {
-                BrandLogo.IsVisible = true;
                 container.Margin = new Thickness(0, 152, 0, -152);
-                return;
             }
-            BrandLogo.IsVisible = false;
             var baseline = e.VerticalOffset - 152;
-            var delta = Math.Max(152 - baseline, -(Device.RuntimePlatform == Device.iOS ? 32 : 0));
+            var delta = Math.Max(152 - baseline, -(Device.RuntimePlatform == Device.iOS ? 32 : 26));
 
             container.Margin = new Thickness(0, delta, 0, Math.Min(-delta, 0));
         }
@@ -81,6 +100,7 @@ namespace ffof.Views
 
         void PanGestureRecognizer_PanUpdated(object sender, PanUpdatedEventArgs e)
         {
+
             Debug.WriteLine("Scroll: " + e.StatusType + ":" + e.TotalY);
 
             if (originalY < 0)

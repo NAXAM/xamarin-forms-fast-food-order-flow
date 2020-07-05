@@ -19,12 +19,12 @@
                     Value="0,32,0,0" />
                 <On
                     Platform="Android"
-                    Value="0" />
+                    Value="0,26,0,0" />
             </OnPlatform>
         </Grid.Padding>
         <Grid.RowDefinitions>
             <RowDefinition
-                Height="144"/>
+                Height="144" />
             <RowDefinition
                 Height="*" />
         </Grid.RowDefinitions>
@@ -58,7 +58,7 @@
                 </Grid.RowDefinitions>
                 <controls:BrandView
                     VerticalOptions="Center"
-                    Margin="24,0"
+                    Margin="50,25"
                     BindingContext="{Binding Brand}" />
 
                 <CollectionView
@@ -78,7 +78,7 @@
                                 </Grid.RowDefinitions>
                                 <CollectionView
                                     SelectionMode="Single"
-                                    ItemsSource="{Binding Categories}"
+                                    ItemsSource="{Binding .}"
                                     ItemSizingStrategy="MeasureFirstItem">
                                     <CollectionView.ItemsLayout>
                                         <LinearItemsLayout
@@ -98,7 +98,7 @@
                                                     CornerRadius="20">
                                                     <StackLayout
                                                         Spacing="2">
-                                                        <Image
+                                                        <ffimageloading:CachedImage
                                                             Aspect="AspectFit"
                                                             Margin="16,16,16,0"
                                                             WidthRequest="72"
@@ -142,11 +142,12 @@
                                     <RowDefinition
                                         Height="96" />
                                     <RowDefinition
-                                        Height="32" />
+                                        Height="50" />
                                     <RowDefinition
-                                        Height="24" />
+                                        Height="25" />
                                 </Grid.RowDefinitions>
                                 <Image
+                                    Grid.Row="0"
                                     Aspect="AspectFit"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
@@ -158,6 +159,7 @@
                                     MaxLines="2"
                                     FontSize="Small"
                                     VerticalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
                                     Text="{Binding Name}" />
 
                                 <StackLayout
@@ -165,11 +167,13 @@
                                     Margin="24,0"
                                     Orientation="Horizontal">
                                     <Label
-                                        HorizontalOptions="StartAndExpand"
                                         FontAttributes="Bold"
-                                        VerticalTextAlignment="Center"
-                                        FontSize="Small"
-                                        Text="{Binding Pricing, StringFormat='VND {0:##,0}k'}" />
+                                        FontSize="{StaticResource FontSizeM}"
+                                        HorizontalOptions="StartAndExpand"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding Pricing, StringFormat='VND {0:##,0}k'}"
+                                        VerticalOptions="End" />
 
                                     <pc:PancakeView
                                         BackgroundColor="AliceBlue"
@@ -182,8 +186,7 @@
                                                     Width="24" />
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition
-                                                    Height="24" />
+                                                <RowDefinition Height="24"/>
                                             </Grid.RowDefinitions>
 
                                             <Label
@@ -221,7 +224,7 @@
                     Command="{Binding GoBackCommand}" />
             </Label.GestureRecognizers>
         </Label>
-        
+
         <Grid
             IsVisible="{Binding HasCartItems}"
             Margin="16"
@@ -317,13 +320,13 @@
                             Text="Big Mac Burger" />
                         <Label
                             HorizontalTextAlignment="Center"
-                            Text="AED 24" />
+                            Text="VND 24k" />
 
                         <Label
                             Padding="24,16"
                             FontSize="Small"
                             HorizontalTextAlignment="Center"
-                            Text="The current TouchStarted/TouchDelta/TouchCompleted pattern is a good start that works for pan/zoom and some other scenarios" />
+                            Text="A big and tasty Halal beef patty smothered in our one of a king Big Tasty Sauce and 3 slices of elemental chesse... " />
 
 
                         <Grid>
@@ -397,14 +400,16 @@
                         Grid.Row="3"
                         ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="2*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition
                                 Height="64" />
                         </Grid.RowDefinitions>
-        
+
 
                         <controls:Stepper />
 

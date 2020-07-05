@@ -7,10 +7,11 @@ using ffof.Models;
 using ffof.Views;
 using Xamarin.Forms;
 using Xamarin.Essentials;
-
+using PropertyChanged;
 namespace ffof.ViewModels
 {
-    public class ProductsViewModel : INotifyPropertyChanged
+    [AddINotifyPropertyChangedInterface]
+    public class ProductsViewModel
     {
         private bool productShown;
         private bool hasCartItems;
@@ -23,25 +24,9 @@ namespace ffof.ViewModels
 
         public double ScreenWidth => DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
 
-        public bool ProductShown
-        {
-            get => productShown;
-            set
-            {
-                productShown = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProductShown)));
-            }
-        }
+        public bool ProductShown { get; set; }
 
-        public bool HasCartItems
-        {
-            get => hasCartItems;
-            set
-            {
-                hasCartItems = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasCartItems)));
-            }
-        }
+        public bool HasCartItems { get; set; }
 
         public ProductModel CurrentProduct { get; set; }
 
@@ -98,7 +83,5 @@ namespace ffof.ViewModels
                 navigation.PushAsync(new CartPage());
             });
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

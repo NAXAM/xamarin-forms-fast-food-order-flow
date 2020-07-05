@@ -5,8 +5,10 @@ using Bogus;
 using ffof.Models;
 using Xamarin.Forms;
 using ffof.Views;
+using PropertyChanged;
 namespace ffof.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class CartViewModel
     {
         public ObservableCollection<ProductModel> Products { get; set; }

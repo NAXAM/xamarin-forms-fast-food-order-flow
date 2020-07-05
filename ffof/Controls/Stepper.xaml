@@ -9,13 +9,13 @@
     x:Name="stepper">
     <pc:PancakeView
         Margin="8"
-        BorderColor="DarkCyan"
+        BorderColor="LightGray"
         BorderThickness="1"
         CornerRadius="24">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Label
@@ -26,16 +26,17 @@
                 Text="{Static res:IconFont.Minus}"
                 VerticalTextAlignment="Center">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding MinusCommand}" CommandParameter="{Binding Source={x:Reference txtVolume}, Path=Text}"/>
+                    <TapGestureRecognizer Command="{Binding MinusCommand}" CommandParameter="{Binding Source={x:Reference txtVolume}, Path=.}"/>
                 </Label.GestureRecognizers>
             </Label>
-            <controls:BorderlessEntry
+            <Label
                 Grid.Column="1"
                 x:Name="txtVolume"
+                HorizontalOptions="FillAndExpand"
                 FontAttributes="Bold"
                 FontSize="{StaticResource FontSizeM}"
                 HorizontalTextAlignment="Center"
-                Text="{Binding CurrentValue}"
+                Text="1"
                 VerticalOptions="Center" />
             <Label
                 Grid.Column="2"
@@ -46,7 +47,7 @@
                 Text="{Static res:IconFont.Plus}"
                 VerticalTextAlignment="Center">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding PlusCommand}" CommandParameter="{Binding Source={x:Reference txtVolume}, Path=Text}"/>
+                    <TapGestureRecognizer Command="{Binding PlusCommand}" CommandParameter="{Binding Source={x:Reference txtVolume}, Path=.}"/>
                 </Label.GestureRecognizers>
             </Label>
         </Grid>
