@@ -1,8 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 using ffof.Models;
 using ffof.ViewModels;
 using Xamarin.Forms;
@@ -62,28 +59,9 @@ namespace ffof.Views
             }
         }
 
-        CancellationTokenSource tcs;
-
         double currentOffset;
         void LstProducts_Scrolled(object sender, ItemsViewScrolledEventArgs e)
         {
-            //tcs?.Cancel();
-
-            //tcs = new CancellationTokenSource();
-
-            //var canceled = await Task.Delay(10, tcs.Token)
-            //    .ContinueWith(t =>
-            //    {
-            //        return t.IsCanceled;
-            //    });
-
-            ////if (canceled) return;
-            //var ep = Math.Abs(e.VerticalOffset - currentOffset);
-            //if (ep < 0.5)
-            //{
-            //    return;
-            //}
-
             currentOffset = e.VerticalOffset;
             if (e.VerticalOffset < 152)
             {
@@ -100,9 +78,6 @@ namespace ffof.Views
 
         void PanGestureRecognizer_PanUpdated(object sender, PanUpdatedEventArgs e)
         {
-
-            Debug.WriteLine("Scroll: " + e.StatusType + ":" + e.TotalY);
-
             if (originalY < 0)
             {
                 originalY = itemContainer.TranslationY;

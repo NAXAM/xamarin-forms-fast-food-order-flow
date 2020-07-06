@@ -136,7 +136,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid
-                                Padding="0,8"
+                                Padding="10,8"
                                 RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition
@@ -144,10 +144,15 @@
                                     <RowDefinition
                                         Height="50" />
                                     <RowDefinition
-                                        Height="25" />
+                                        Height="36" />
                                 </Grid.RowDefinitions>
-                                <Image
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="32"/>
+                                </Grid.ColumnDefinitions>
+                                <ffimageloading:CachedImage
                                     Grid.Row="0"
+                                    Grid.ColumnSpan="2"
                                     Aspect="AspectFit"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
@@ -155,54 +160,34 @@
 
                                 <Label
                                     Grid.Row="1"
+                                    Grid.ColumnSpan="2"
                                     Margin="24,0"
                                     MaxLines="2"
                                     FontSize="Small"
                                     VerticalTextAlignment="End"
                                     LineBreakMode="TailTruncation"
                                     Text="{Binding Name}" />
-
-                                <StackLayout
+                                <Label
                                     Grid.Row="2"
+                                    Grid.Column="0"
                                     Margin="24,0"
-                                    Orientation="Horizontal">
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="{StaticResource FontSizeM}"
-                                        HorizontalOptions="StartAndExpand"
-                                        LineBreakMode="TailTruncation"
-                                        MaxLines="1"
-                                        Text="{Binding Pricing, StringFormat='VND {0:##,0}k'}"
-                                        VerticalOptions="End" />
+                                    FontAttributes="Bold"
+                                    FontSize="{StaticResource FontSizeM}"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1"
+                                    Text="{Binding Pricing, StringFormat='VND {0:##,0}k'}"
+                                    VerticalOptions="Center" />
+                                <controls:PlusButton
+                                    Grid.Row="2"
+                                    Grid.Column="1">
+                                    <controls:PlusButton.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.ViewProductDetailCommand, Source={Reference root}}"
+                                            CommandParameter="{Binding .}" />
+                                    </controls:PlusButton.GestureRecognizers>
+                                </controls:PlusButton>
 
-                                    <pc:PancakeView
-                                        BackgroundColor="AliceBlue"
-                                        CornerRadius="12">
-                                        <Grid
-                                            RowSpacing="0"
-                                            ColumnSpacing="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition
-                                                    Width="24" />
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="24"/>
-                                            </Grid.RowDefinitions>
-
-                                            <Label
-                                                FontFamily="Material"
-                                                Text="{Static res:IconFont.Plus}"
-                                                VerticalOptions="Center"
-                                                HorizontalOptions="Center" />
-
-                                            <Grid.GestureRecognizers>
-                                                <TapGestureRecognizer
-                                                    Command="{Binding BindingContext.ViewProductDetailCommand, Source={Reference root}}"
-                                                    CommandParameter="{Binding .}" />
-                                            </Grid.GestureRecognizers>
-                                        </Grid>
-                                    </pc:PancakeView>
-                                </StackLayout>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -303,7 +288,7 @@
                         </ContentView.GestureRecognizers>
                     </ContentView>
 
-                    <Image
+                    <ffimageloading:CachedImage
                         Grid.Row="1"
                         Aspect="AspectFit"
                         VerticalOptions="Center"
@@ -323,38 +308,36 @@
                             Text="VND 24k" />
 
                         <Label
-                            Padding="24,30,24,0"
+                            Padding="0,30,0,0"
                             FontSize="{StaticResource FontSizeM}"
                             TextColor="LightSlateGray"
                             HorizontalTextAlignment="Center"
-                            Text="A big and tasty Halal beef patty smothered in  " />
+                            Text="A big and tasty Halal beef patty smothered in" />
                         <Label
-                            Padding="24,0"
                             FontSize="{StaticResource FontSizeM}"
                             TextColor="LightSlateGray"
                             HorizontalTextAlignment="Center"
-                            Text="our one of a king Big Tasty Sauce and 3"
-                            />
+                            Text="our one of a king Big Tasty Sauce and 3" />
                         <Label
-                            Padding="24,0,24,30"
+                            Padding="0,0,0,30"
                             FontSize="{StaticResource FontSizeM}"
                             TextColor="LightSlateGray"
                             HorizontalTextAlignment="Center"
-                            Text="slices of elemental chesse..."
-                            />
+                            Text="slices of elemental chesse..." />
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition
                                     Height="128" />
                             </Grid.RowDefinitions>
 
-                            <CollectionView ItemsSource="{Binding Materials}">
+                            <CollectionView
+                                ItemsSource="{Binding Materials}">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout
                                         ItemSpacing="0"
                                         Orientation="Horizontal" />
                                 </CollectionView.ItemsLayout>
-                                
+
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid
@@ -381,7 +364,7 @@
                                                     VerticalOptions="Center"
                                                     HorizontalOptions="Center"
                                                     Aspect="AspectFit"
-                                                    Source="{Binding PictureUrl}"/>
+                                                    Source="{Binding PictureUrl}" />
                                             </pc:PancakeView>
 
                                             <Label

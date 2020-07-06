@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:ffof.Resources"
     mc:Ignorable="d">
-    <StackLayout Spacing="4">
+    <StackLayout
+        Spacing="4">
         <Label
             Margin="0,15,0,0"
             d:Text="McDonald's"
@@ -18,14 +19,18 @@
             MaxLines="1"
             Text="{Binding Name}" />
 
-        <Grid ColumnSpacing="0">
+        <Grid
+            ColumnSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="48" />
+                <ColumnDefinition
+                    Width="48" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="48" />
+                <ColumnDefinition
+                    Width="48" />
             </Grid.ColumnDefinitions>
 
             <Label
@@ -40,7 +45,8 @@
                             FontFamily="Material"
                             Text="{Static res:IconFont.Star}"
                             TextColor="DarkOrange" />
-                        <Span Text="{Binding Rating, StringFormat='{0:#0.#}'}" />
+                        <Span
+                            Text="{Binding Rating, StringFormat='{0:#0.#}'}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -66,10 +72,14 @@
             HorizontalTextAlignment="Center">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="{Binding ShortestWaitingTime}" />
-                    <Span Text="-" />
-                    <Span Text="{Binding LongestWaitingTime}" />
-                    <Span Text=" min" />
+                    <Span
+                        Text="{Binding ShortestWaitingTime}" />
+                    <Span
+                        Text="-" />
+                    <Span
+                        Text="{Binding LongestWaitingTime}" />
+                    <Span
+                        Text=" min" />
                 </FormattedString>
             </Label.FormattedText>
         </Label>

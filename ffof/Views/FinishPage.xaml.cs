@@ -7,6 +7,7 @@ namespace ffof.Views
     public partial class FinishPage : ContentPage
     {
         private ISystemStyleManager systemStyleManager;
+
         public FinishPage()
         {
             InitializeComponent();

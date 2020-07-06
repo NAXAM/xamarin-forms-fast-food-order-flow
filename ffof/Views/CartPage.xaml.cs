@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ffof.ViewModels;
+﻿using ffof.ViewModels;
 using Xamarin.Forms;
 
 namespace ffof.Views

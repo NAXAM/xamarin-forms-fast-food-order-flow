@@ -82,13 +82,13 @@
 
                         <ffimageloading:CachedImage
                             Margin="16"
-                            Aspect="AspectFill"
+                            Aspect="AspectFit"
                             Source="{Binding PictureUrl}" />
 
                         <StackLayout
                             Grid.Column="1"
-                            Spacing="0"
-                            VerticalOptions="Center">
+                            Spacing="10"
+                            VerticalOptions="CenterAndExpand">
                             <Label
                                 FontSize="{StaticResource FontSizeL}"
                                 LineBreakMode="TailTruncation"
@@ -97,9 +97,12 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="{StaticResource FontSizeL}"
+                                VerticalOptions="End"
                                 Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
                         </StackLayout>
-                        <Grid Grid.Column="2" Padding="10,5">
+                        <Grid
+                            Grid.Column="2"
+                            Padding="10,8">
                             <controls:Stepper />
                         </Grid>
                     </Grid>
@@ -112,27 +115,33 @@
                         <Label
                             Padding="16"
                             Text="You might like" />
-                        <CarouselView
+                        <CollectionView
+                            ItemsLayout="HorizontalList"
                             HeightRequest="112"
-                            ItemsSource="{Binding .}"
-                            PeekAreaInsets="16">
-                            <CarouselView.ItemTemplate>
+                            ItemsSource="{Binding .}">
+                            <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid
                                         Padding="8">
                                         <pc:PancakeView
                                             Padding="8"
                                             BackgroundColor="White"
-                                            BorderColor="DarkGray"
+                                            BorderColor="Transparent"
                                             BorderThickness="1"
+                                            HorizontalOptions="Start"
                                             CornerRadius="12"
-                                            HasShadow="False">
+                                            HasShadow="True">
+                                            <pc:PancakeView.Shadow>
+                                                <pc:DropShadow
+                                                    BlurRadius="0.8"
+                                                    Opacity="0.1" />
+                                            </pc:PancakeView.Shadow>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition
                                                         Width="72" />
                                                     <ColumnDefinition
-                                                        Width="*" />
+                                                        Width="150" />
                                                     <ColumnDefinition
                                                         Width="48" />
                                                 </Grid.ColumnDefinitions>
@@ -148,6 +157,7 @@
 
                                                 <StackLayout
                                                     Grid.Column="1"
+                                                    Spacing="15"
                                                     VerticalOptions="Center">
                                                     <Label
                                                         FontSize="{StaticResource FontSizeL}"
@@ -157,37 +167,16 @@
                                                         FontSize="{StaticResource FontSizeL}"
                                                         Text="{Binding Pricing, StringFormat='VND {0:##}k'}" />
                                                 </StackLayout>
-                                                <pc:PancakeView
+                                                <controls:PlusButton
                                                     Grid.Column="2"
-                                                    Margin="8"
-                                                    BorderColor="DarkGray"
-                                                    BorderThickness="1"
-                                                    CornerRadius="16"
-                                                    VerticalOptions="End">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition
-                                                                Width="32" />
-                                                        </Grid.ColumnDefinitions>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition
-                                                                Height="32" />
-                                                        </Grid.RowDefinitions>
-                                                        <Label
-                                                            FontAttributes="Bold"
-                                                            FontFamily="Material"
-                                                            FontSize="{StaticResource FontSizeIcon}"
-                                                            HorizontalTextAlignment="Center"
-                                                            Text="{Static res:IconFont.Plus}"
-                                                            VerticalTextAlignment="Center" />
-                                                    </Grid>
-                                                </pc:PancakeView>
+                                                    VerticalOptions="End"
+                                                    HorizontalOptions="Center" />
                                             </Grid>
                                         </pc:PancakeView>
                                     </Grid>
                                 </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
 
                         <Label
                             Padding="16,24,16,16"
