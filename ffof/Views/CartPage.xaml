@@ -93,6 +93,7 @@
                                 FontSize="{StaticResource FontSizeL}"
                                 LineBreakMode="TailTruncation"
                                 MaxLines="2"
+                                TextColor="Gray"
                                 Text="{Binding Name}" />
                             <Label
                                 FontAttributes="Bold"
@@ -129,7 +130,7 @@
                                             BorderColor="Transparent"
                                             BorderThickness="1"
                                             HorizontalOptions="Start"
-                                            CornerRadius="12"
+                                            CornerRadius="25"
                                             HasShadow="True">
                                             <pc:PancakeView.Shadow>
                                                 <pc:DropShadow
@@ -161,6 +162,7 @@
                                                     VerticalOptions="Center">
                                                     <Label
                                                         FontSize="{StaticResource FontSizeL}"
+                                                        TextColor="Gray"
                                                         Text="{Binding Name}" />
                                                     <Label
                                                         FontAttributes="Bold"

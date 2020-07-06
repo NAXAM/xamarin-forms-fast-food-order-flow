@@ -300,18 +300,19 @@
                         Source="https://gigamall.com.vn/data/2019/09/20/11493168_Trung-t%C3%A2m-th%C6%B0%C6%A1ng-m%E1%BA%A1i-GIGAMALL-McDonalds-1.jpg" />
 
                     <StackLayout
-                        Spacing="0"
+                        Spacing="10"
                         Grid.Row="2">
                         <Label
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
                             Text="Big Mac Burger" />
                         <Label
+                            TextColor="Gray"
                             HorizontalTextAlignment="Center"
                             Text="VND 24k" />
 
                         <Label
-                            Padding="0,30,0,0"
+                            Padding="0,25,0,0"
                             FontSize="{StaticResource FontSizeM}"
                             TextColor="LightSlateGray"
                             HorizontalTextAlignment="Center"
