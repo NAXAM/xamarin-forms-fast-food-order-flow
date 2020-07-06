@@ -164,6 +164,7 @@
                                     Margin="24,0"
                                     MaxLines="2"
                                     FontSize="Small"
+                                    TextColor="Gray"
                                     VerticalTextAlignment="End"
                                     LineBreakMode="TailTruncation"
                                     Text="{Binding Name}" />
@@ -171,6 +172,7 @@
                                     Grid.Row="2"
                                     Grid.Column="0"
                                     Margin="24,0"
+                                    TextColor="Gray"
                                     FontAttributes="Bold"
                                     FontSize="{StaticResource FontSizeM}"
                                     HorizontalOptions="Start"
@@ -199,11 +201,12 @@
             FontFamily="Material"
             BackgroundColor="Transparent"
             Padding="16"
+            x:Name="BackButton"
             FontSize="24"
             HorizontalOptions="Start"
             VerticalOptions="Start"
             Text="{Static res:IconFont.ArrowLeft}"
-            TextColor="DimGray">
+            TextColor="White">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding GoBackCommand}" />
@@ -359,6 +362,7 @@
                                                 HorizontalOptions="Center"
                                                 BackgroundColor="AliceBlue"
                                                 CornerRadius="40"
+                                                WidthRequest="32"
                                                 Grid.Row="0">
                                                 <ffimageloading:CachedImage
                                                     VerticalOptions="Center"

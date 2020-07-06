@@ -111,7 +111,7 @@
             <CollectionView.FooterTemplate>
                 <DataTemplate>
                     <StackLayout
-                        Spacing="0">
+                        Spacing="10">
                         <Label
                             Padding="16"
                             Text="You might like" />
@@ -236,7 +236,7 @@
                             <ffimageloading:CachedImage
                                 Margin="16,8"
                                 Aspect="AspectFit"
-                                HeightRequest="48"
+                                HeightRequest="32"
                                 Source="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Font_Awesome_5_brands_cc-apple-pay.svg/512px-Font_Awesome_5_brands_cc-apple-pay.svg.png" />
 
                             <Label

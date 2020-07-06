@@ -66,10 +66,12 @@ namespace ffof.Views
             if (e.VerticalOffset < 152)
             {
                 container.Margin = new Thickness(0, 152, 0, -152);
+                BackButton.TextColor = Color.White;
             }
+
             var baseline = e.VerticalOffset - 152;
             var delta = Math.Max(152 - baseline, -(Device.RuntimePlatform == Device.iOS ? 32 : 26));
-
+            BackButton.TextColor = Color.Black;
             container.Margin = new Thickness(0, delta, 0, Math.Min(-delta, 0));
         }
 
