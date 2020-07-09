@@ -29,8 +29,8 @@ namespace ffof.ViewModels
                         Color.Indigo.ToHex(),
                         }
                     ))
-                .RuleFor(x => x.HighlightUrl, o => o.Image.PicsumUrl())
-                .RuleFor(x => x.LogoUrl, o => o.Image.PicsumUrl())
+                .RuleFor(x => x.HighlightUrl, o => o.Image.LoremFlickrUrl(280,280,"Fastfood meal"))
+                .RuleFor(x => x.LogoUrl, o => o.Image.LoremFlickrUrl(320,240, "Famous fastfood logo"))
                 .RuleFor(x => x.LongestWaitingTime, o => o.Random.Int(15, 60))
                 .RuleFor(x => x.Name, o => o.Company.CompanyName())
                 .RuleFor(x => x.Rating, o => o.Random.Double(0, 1))

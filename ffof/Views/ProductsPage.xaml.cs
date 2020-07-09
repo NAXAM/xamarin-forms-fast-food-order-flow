@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using ffof.Models;
 using ffof.ViewModels;
 using Xamarin.Forms;
@@ -33,7 +32,6 @@ namespace ffof.Views
             BindingContext = new ProductsViewModel(Navigation, brand);
 
             (BindingContext as INotifyPropertyChanged).PropertyChanged += ProductsPage_PropertyChanged;
-
             lstProducts.Scrolled += LstProducts_Scrolled;
         }
 
@@ -61,17 +59,19 @@ namespace ffof.Views
             }
         }
 
-        private void LstProducts_Scrolled(object sender, ItemsViewScrolledEventArgs e)
+        double currentOffset;
+        void LstProducts_Scrolled(object sender, ItemsViewScrolledEventArgs e)
         {
+            currentOffset = e.VerticalOffset;
             if (e.VerticalOffset < 152)
             {
                 container.Margin = new Thickness(0, 152, 0, -152);
-                return;
+                BackButton.TextColor = Color.White;
             }
 
             var baseline = e.VerticalOffset - 152;
-            var delta = Math.Max(152 - baseline, -(Device.RuntimePlatform == Device.iOS ? 32 : 24));
-
+            var delta = Math.Max(152 - baseline, -(Device.RuntimePlatform == Device.iOS ? 32 : 26));
+            BackButton.TextColor = Color.Black;
             container.Margin = new Thickness(0, delta, 0, Math.Min(-delta, 0));
         }
 
@@ -80,8 +80,6 @@ namespace ffof.Views
 
         void PanGestureRecognizer_PanUpdated(object sender, PanUpdatedEventArgs e)
         {
-            Debug.WriteLine("Scroll: " + e.StatusType + ":" + e.TotalY);
-
             if (originalY < 0)
             {
                 originalY = itemContainer.TranslationY;
@@ -102,7 +100,7 @@ namespace ffof.Views
                         itemContainer.TranslateTo(itemContainer.X, originalY + itemContainer.Height * 1.1);
 
                         (BindingContext as ProductsViewModel).ProductShown = false;
-                        (BindingContext as ProductsViewModel).ShownProduct = null;
+                        (BindingContext as ProductsViewModel).CurrentProduct = null;
                     }
                     return;
                 default:

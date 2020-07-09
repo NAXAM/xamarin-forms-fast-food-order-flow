@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pc:PancakeView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ffof.Controls.PlusButton"
+    xmlns:res="clr-namespace:ffof.Resources"
+    BorderColor="Gray"
+    xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BorderThickness="0.2"
+    CornerRadius="16"
+    VerticalOptions="End">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="32" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="32" />
+        </Grid.RowDefinitions>
+
+        <Label
+            TextColor="Gray"
+            FontFamily="Material"
+            FontSize="{StaticResource FontSizeM}"
+            HorizontalTextAlignment="Center"
+            Text="{Static res:IconFont.Plus}"
+            VerticalTextAlignment="Center" />
+    </Grid>
+</pc:PancakeView>

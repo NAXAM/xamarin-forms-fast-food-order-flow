@@ -1,4 +1,5 @@
 ﻿using System;
+using FFImageLoading.Forms;
 using ffof.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,9 +11,7 @@ namespace ffof
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new MainPage());
-
         }
 
         protected override void OnStart()

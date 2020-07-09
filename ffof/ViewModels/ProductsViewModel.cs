@@ -1,15 +1,16 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using Bogus;
 using ffof.Models;
 using ffof.Views;
 using Xamarin.Forms;
-
+using Xamarin.Essentials;
+using PropertyChanged;
 namespace ffof.ViewModels
 {
-    public class ProductsViewModel : INotifyPropertyChanged
+    [AddINotifyPropertyChangedInterface]
+    public class ProductsViewModel
     {
         private bool productShown;
         private bool hasCartItems;
@@ -20,27 +21,15 @@ namespace ffof.ViewModels
 
         public ObservableCollection<CategoryModel> Categories { get; set; }
 
-        public bool ProductShown
-        {
-            get => productShown;
-            set
-            {
-                productShown = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProductShown)));
-            }
-        }
+        public ObservableCollection<MaterialModel> Materials { get; set; }
 
-        public bool HasCartItems
-        {
-            get => hasCartItems;
-            set
-            {
-                hasCartItems = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasCartItems)));
-            }
-        }
+        public double ScreenWidth => DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
 
-        public ProductModel ShownProduct { get; set; }
+        public bool ProductShown { get; set; }
+
+        public bool HasCartItems { get; set; }
+
+        public ProductModel CurrentProduct { get; set; }
 
         public ICommand ViewProductDetailCommand { get; set; }
 
@@ -57,14 +46,14 @@ namespace ffof.ViewModels
             var categoryFaker = new Faker<CategoryModel>()
                 .RuleFor(x => x.Code, o => o.Lorem.Slug(1))
                 .RuleFor(x => x.Name, o => o.Commerce.Categories(1)[0])
-                .RuleFor(x => x.PictureUrl, o => o.Image.PicsumUrl());
+                .RuleFor(x => x.PictureUrl, o => o.Image.LoremFlickrUrl());
             Categories = new ObservableCollection<CategoryModel>(categoryFaker.Generate(10));
 
             var productFaker = new Faker<ProductModel>()
                 .RuleFor(x => x.Pricing, o => o.Random.Double(10, 200))
                 .RuleFor(x => x.Category, o => o.PickRandom(Categories.Select(x => x.Name)))
                 .RuleFor(x => x.Name, o => o.Commerce.ProductName())
-                .RuleFor(x => x.PictureUrl, o => o.Image.PicsumUrl());
+                .RuleFor(x => x.PictureUrl, o => o.Image.LoremFlickrUrl());
 
             var items = productFaker.Generate(200);
 
@@ -72,9 +61,15 @@ namespace ffof.ViewModels
                 items.GroupBy(x => x.Category)
                 );
 
+            var materialFaker = new Faker<MaterialModel>()
+                .RuleFor(x => x.Name, o => o.Commerce.ProductMaterial())
+                .RuleFor(x => x.PictureUrl, o => o.Image.LoremFlickrUrl(240,240));
+
+            Materials = new ObservableCollection<MaterialModel>(materialFaker.Generate(10));
+
             ViewProductDetailCommand = new Command<ProductModel>(product =>
             {
-                ShownProduct = product;
+                CurrentProduct = product;
                 ProductShown = true;
                 HasCartItems = true;
             });
@@ -82,7 +77,7 @@ namespace ffof.ViewModels
             AddToCartCommand = new Command<ProductModel>(product =>
             {
                 ProductShown = false;
-                ShownProduct = null;
+                CurrentProduct = null;
             });
 
             GoBackCommand = new Command(() =>
@@ -95,7 +90,5 @@ namespace ffof.ViewModels
                 navigation.PushAsync(new CartPage());
             });
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
