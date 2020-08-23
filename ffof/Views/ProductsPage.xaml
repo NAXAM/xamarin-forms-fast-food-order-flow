@@ -68,13 +68,13 @@
 
                     <CollectionView.HeaderTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid >
                                 <Grid.RowDefinitions>
                                     <RowDefinition
                                         Height="160" />
                                 </Grid.RowDefinitions>
                                 <CollectionView
-                                    ItemsSource="{Binding Categories}"
+                                    ItemsSource="{Binding .}"
                                     ItemSizingStrategy="MeasureFirstItem">
                                     <CollectionView.ItemsLayout>
                                         <LinearItemsLayout
